@@ -5,7 +5,7 @@
 
 - EventEmitter가 확장되어 있음
 - Request, Router, Lang 등의 App을 사용할 수 있는 상태로 포함하고 있음
-- `XE.app()` 메소드로 Request 등 등록된 App의 instance를 전달하는 Promise를 반환함
+- `XE.app()` 메소드로 Request 등 등록된 App의 instance를 전달하는 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise)를 반환함
 
 ```js
 // XE.app()은 Promise를 반환 함
@@ -15,14 +15,14 @@ XE.app('Request').then((requestInstance) => {
     requestInstance.get()
 })
 
-// boot 되지 않은 instance를 반환
+// instance를 반환 (아직 boot 되지 않았을 수 있음)
 XE.app('Request', (requestInstance) => {
     requestInstance.get()
 })
 ```
 
 ## EventEmitter
-EventEmitter는 이벤트에 대한 linstener를 관리하기 위해 제작됨
+EventEmitter는 이벤트에 대한 listener를 관리하기 위해 제작됨
 
 - Vue의 이름을 참조하였고, 혼동을 피하고자 다음과 같은 이름을 사용함
     - $$emit, $$on, $$once, $$off, $$offAll
