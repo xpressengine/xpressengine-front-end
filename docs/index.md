@@ -24,17 +24,25 @@ XE.app('Request', (requestInstance) => {
 ## EventEmitter
 EventEmitter는 이벤트에 대한 listener를 관리하기 위해 제작됨
 
-- Vue의 이름을 참조하였고, 혼동을 피하고자 다음과 같은 이름을 사용함
-    - $$emit, $$on, $$once, $$off, $$offAll
-- XE Object와 등록된 App은 EventEmitter를 사용할 수 있는 상태로 instance가 생성 됨
-- `$$on`, `$$once`는 Promise를 반환함
-    - 'onFulfilled'에는 첫번째 argument는 발생된 이벤트의 이름임
+- $$emit, $$on, $$once, $$off, $$offAll
+- `$$on`, `$$once`
+    - callback 첫번째 argument는 발생된 이벤트의 이름임
         - (미구현) 다중 이벤트를 구독할 수 있도록 개선 예정이어서 이러한 규칙을 가짐
+- before 옵션으로 순서를 조정할 수 있음
+    - 이름을 가진 listener만 대상으로 할 수 있음
 
 ```js
-window.XE.$$on('setup').then((eventName, args1, args2/*, args3, ... */) => {
-    console.debug('setup', args1, arge2)
-})
+XE.$$on('eventName', /*callback*/(eventName, arg1, arg2/*, arg3, ...*/) => {
+    console.debug('emitted', eventName, arg1, arg2)
+}, options)
+
+XE.$$on('setup', (eventName, arg) => {
+    console.debug('emitted', eventName, arg)
+}, { name: 'low'})
+
+XE.$$on('setup', (eventName, arg) => {
+    console.debug('emitted', eventName, arg)
+}, { name: 'common', before: 'low' } )
 ```
 
 ## App
