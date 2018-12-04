@@ -13,7 +13,7 @@ XpressEngine 3(이하 XE)의 Front-End의 기능 및 동작은  `XE` 변수에 �
 ## EventEmitter
 EventEmitter는 이벤트에 대한 listener를 관리하고 트리거하는데 사용됩니다.
 
-- $$emit, $$on, $$once, $$off, $$offAll
+- `$$emit`, `$$on`, `$$once`, `$$off`, `$$offAll`
 - `$$on`, `$$once`
     - callback 첫번째 argument는 발생된 이벤트의 이름
 - before 옵션으로 순서를 조정할 수 있습니다.
@@ -37,7 +37,6 @@ XE.$$on('setup', (eventName, arg) => {
 - XE Object에 포함되는 모듈은 App을 확장하였으며, Singleton임
 - EventEmitter를 확장하고 있음
 - XE Core에서 다루는 것만을 고려했으므로 외부에서 이를 직접 확장하여 사용하기는 어려울 수 있음
-- `boot` method를 포함하며, XE Object와 back-end로부터 전달된 주요 설정을 전달 받아 처리할 수 있음
 
 ```js
 // XE.app()은 Promise를 반환 함
@@ -52,7 +51,3 @@ XE.app('Request', (appRequest) => {
     appRequest.get()
 })
 ```
-
-
-## Utils
-- window.XE.Utils
